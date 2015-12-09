@@ -1,0 +1,411 @@
+/*
+RecognEyes Attempt
+Author: Keith Robertson
+*/
+
+
+/*--------------------------------------------
+Define some variables used in multiple places 
+---------------------------------------------*/
+
+/*General*/
+
+@background: #2D3639;
+@foreground: #d7d7d7;
+@text: #d7d7d7;
+@comments: #D9E577;
+@number: #ff4676;
+
+/*CSS*/
+@css_import: #00D0D0;
+@css_media: #2B91AF;
+@css_important: #E5E53F;
+@css_property: #FF8080;
+@css_selector: #79ABFF;
+@css_string: #DC78DC;
+@css_value: #E5E53F;
+
+/*JS*/
+@js_bracket: #EFC090;
+@js_client_keywords: #00E000;
+@js_native_keywords: #2B91AF;
+@js_operator: #EFC090;
+@js_RegExp: #00D0D0;
+@js_reserved: #00E000;
+@js_string: #DC78DC;
+@js_text: #FF8080;
+@js_safe_bracket: #EFC090;
+
+/*PHP*/
+@php_delimiter: #79ABFF;
+@php_bracket: #EFC090;
+@php_built_in_var: #2B91AF;
+@php_constants: #00D0D0;
+@php_default_text: #DDD;
+@php_function_keywords: #BFA4A4;
+@php_functions: #00E000;
+@php_identifier: #FF8080;
+@php_number: #E5E53F;
+@php_operator: #EFC090;
+@php_reserved_keywords: #00E000;
+@php_string: #DC78DC;
+@php_types: #79ABFF;
+@php_variables: #2B91AF;
+@php_tags: #F07;
+@php_text: #FF8080;
+
+/*HTML*/
+@html_anchor_tags: #00D0D0;
+@html_attribute_name: #FF8080;
+@html_attribute_val: #DC78DC;
+@html_form_tags: #00D0D0;
+@html_image_tags: #00D0D0;
+@html_number: #E5E53F;
+@html_object_tags: #2B91AF;
+@html_other_tags: #00D0D0;
+@html_script_tags: #79ABFF;
+@html_special_chars: #2B91AF;
+@html_style_tags: #00D0D0;
+@html_table_tags: #00D0D0;
+@html_tags: #00D0D0;
+@html_text: #DDD;
+
+
+/* Code Styling */
+
+.CodeMirror, .CodeMirror-scroll {
+    background-color: @background;
+    color: @foreground;
+}
+
+.CodeMirror-focused .CodeMirror-activeline-background {
+    background: rgba(75,139,190,0.05);
+}
+
+.show-line-padding .CodeMirror-focused .CodeMirror-activeline-background {
+    box-shadow: inset 15px 0 0 0 #000;
+}
+
+.CodeMirror-focused .CodeMirror-activeline {
+    .CodeMirror-gutter-elt {
+        background: rgba(40, 84, 134, 0.7);
+        color: #d7d7d7;
+    }
+    .inline-widget .CodeMirror-gutter-elt {
+        color: #767676;    
+    }
+}
+
+
+/*GENERAL STYLES*/
+.cm-atom, .cm-string, .cm-string-2, .cm-hr {color: @text;}
+.cm-number, .cm-attribute, .cm-plus {color: @text;}
+.cm-def, .cm-property {color: @text;}
+.cm-variable, .cm-variable-2, .cm-variable-3, .cm-operator, .cm-meta, .cm-bracket {color: @text;}
+.cm-comment {color: @comments;}
+.cm-error, .cm-minus {color: @text;}
+.cm-header {color: @text;}
+.cm-link {color: @text; text-decoration: none;}
+.cm-rangeinfo {color: @text;}
+.cm-keyword, .cm-qualifier, .cm-builtin, .cm-tag, .cm-quote {color: @text;}
+
+/* Extra CSS */
+
+.CodeMirror-searching {
+    background-color: #d3cd69;
+    &.searching-current-match {
+        background-color: #f6a644;
+    }
+}
+
+
+.CodeMirror-cursor {
+    border-left: 1px solid #c5c8c6 !important;
+}
+
+.CodeMirror-gutters {
+    background-color: @background;
+    border-right: none;
+}
+
+.CodeMirror-linenumber {
+    color: #767676;
+}
+
+.CodeMirror .CodeMirror-selected {
+    background: #333f48;
+}
+.CodeMirror-focused .CodeMirror-selected {
+    background: rgba(75,139,190,0.5);
+}
+
+/*Bracket Highlight*/
+.CodeMirror-matchingbracket, .CodeMirror-matchingtag {
+    background-color: #96a0d3;
+    background-color: rgba(0,0,0,0.1);
+    border-bottom: solid 1px #2fcfff;
+}
+
+span.CodeMirror-matchingbracket {
+	color: #2fcfff !important;
+	background-color: none;	
+}
+
+.CodeMirror-overwrite .CodeMirror-cursor {
+    border-left: none !important;
+    border-bottom: 1px solid #fff;
+}
+
+
+.CodeMirror {
+    .CodeMirror {
+        background: transparent;
+    }
+
+    .CodeMirror .CodeMirror-gutters {
+        background: transparent;
+        border-right: none;
+    }
+
+    .CodeMirror .CodeMirror-activeline-background {
+        background: transparent;
+    }
+
+    .CodeMirror .CodeMirror-activeline .CodeMirror-gutter-elt {
+        background: transparent;
+        color: #767676;
+    }
+
+    .CodeMirror-focused .CodeMirror-activeline-background {
+        background: #2f2f2f;
+    }
+
+    .CodeMirror-focused .CodeMirror-activeline {
+        .CodeMirror-gutter-elt {
+            background: #000;
+            color: @comments !important;
+            border-bottom: solid 1px #2fcfff;
+            
+        }
+    }
+}
+
+/* Non-editor styling */
+
+.image-view,
+.not-editor {
+    background-color: @background;
+}
+
+.view-pane .image-view {
+    color: @foreground;
+}
+
+
+/*--------------------------------------
+HTML MODE STYLES .cm-m-xml: HTML, XML
+--------------------------------------*/
+
+.cm-m-xml{
+    color: @text;   
+}
+
+.cm-m-xml.cm-comment{
+    color: @comments;   
+}
+
+.cm-m-xml.cm-tag{
+    color: @html_tags;
+}
+
+.cm-m-xml.cm-attribute{
+    color: @html_attribute_name;
+}
+
+.cm-m-xml.cm-string{
+    color: @html_attribute_val;
+}
+
+.cm-m-xml.cm-bracket{
+    color: #8aabcc;
+}
+
+
+/*--------------------------------------
+PHP MODE STYLES .cm-m-clike
+--------------------------------------*/
+
+.cm-meta, .cm-m-clike.cm-meta{
+    color: @php_delimiter;
+}
+
+.cm-m-clike{
+    color: @php_bracket;   
+}
+
+.cm-m-clike.cm-keyword{
+    color: @php_reserved_keywords;
+}
+
+.cm-m-clike.cm-builtin{
+    color: @php_function_keywords;   
+}
+
+.cm-m-clike.cm-string{
+    color: @php_string;   
+}
+
+.cm-m-clike.cm-comment{
+    color: @comments;   
+}
+
+.cm-m-clike.cm-variable-2{
+    color: @php_variables;
+}
+
+.cm-m-clike.cm-operator{
+    color: @php_operator;
+}
+
+.cm-m-clike.cm-bracket{
+    color: @php_bracket;   
+}
+
+.cm-m-clike.cm-number{
+    color: @number;
+}
+
+.cm-m-clike.cm-variable{
+    color: @php_text;   
+}
+
+
+/*--------------------------------------
+JS MODE STYLES .cm-m-javascript
+---------------------------------------*/
+
+.cm-m-javascript{
+    color: @js_text;
+    color: @js_safe_bracket;
+}
+
+.cm-m-javascript.cm-operator{
+    color: @js_reserved;   
+}
+
+.cm-m-javascript.cm-comment{
+    color: @comments;
+}
+
+.cm-m-javascript.cm-variable,
+.cm-m-javascript.cm-variable-2{
+    color: #c8c1fa;
+}
+
+.cm-m-javascript.cm-variable-3{
+    color: #fadbc1;
+}
+
+.cm-m-javascript.cm-string{
+    color: @js_string;
+}
+
+.cm-m-javascript.cm-string-2{
+    color: @js_RegExp;
+}
+
+.cm-m-javascript.cm-def{
+    color: @text;
+}
+
+.cm-m-javascript.cm-property{
+    color: @js_client_keywords;
+    color: @js_text;
+}
+
+.cm-m-javascript.cm-keyword{
+    color: @js_reserved;
+}
+
+.cm-m-javascript.cm-number{
+    color: @number;
+}   
+
+.cm-m-javascript.cm-bracket{
+    color: @js_bracket;   
+}
+
+
+/*--------------------------------------
+CSS MODE STYLES .cm-m-css
+--------------------------------------*/
+
+.cm-m-css{
+    color: @css_selector;   
+}
+
+.cm-m-css.cm-atom, 
+.cm-m-css.cm-string, 
+.cm-m-css.cm-string-2,
+.cm-m-css.cm-hr {
+    color: @css_value;
+}
+
+.cm-m-css.cm-variable,
+.cm-m-css.cm-number, 
+.cm-m-css.cm-attribute, 
+.cm-m-css.cm-plus {
+    color: @css_value;
+}
+
+.cm-m-css.cm-def,
+.cm-m-css.cm-meta,
+.cm-m-css.cm-property {
+    color: @css_property;
+}
+ 
+
+.cm-m-css.cm-variable-2, 
+.cm-m-css.cm-variable-3{
+    color: #ffcffb;
+}
+
+
+.cm-m-css.cm-operator,
+.cm-m-css.cm-bracket {
+    color: @text;
+}
+
+.cm-m-css.cm-comment {
+    color: @comments;
+}
+
+.cm-m-css.cm-error,
+.cm-m-css.cm-minus {
+    color: @number;
+}
+
+.cm-m-css.cm-header {
+    color: #d85896;
+}
+
+.cm-m-css.cm-link {
+    color: #b77fdb; text-decoration: none;
+}
+
+.cm-m-css.cm-rangeinfo {
+    color: #6c71c4;
+}
+
+.cm-m-css.cm-keyword, 
+.cm-m-css.cm-qualifier, 
+.cm-m-css.cm-builtin, 
+.cm-m-css.cm-tag,
+.cm-m-css.cm-quote {
+    color: @css_selector;
+}
+
+
+
+
+

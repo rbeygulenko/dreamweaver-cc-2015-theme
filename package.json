@@ -1,0 +1,15 @@
+{
+    "name" : "recogneyes.recogneyes-dark-attempt",
+    "title" : "RecognEyes Attempt",
+    "description" : "A theme based on RecognEyes, available on DreamWeaver CC",
+    "homepage" : "https://github.com/keithghrobertson/recogneyes-dark-attempt",
+    "version" : "1.0.0",
+    "author" : "Keith Robertson <contact@keith-robertson.com> (http://keith-robertson.com)",
+    "license" : "MIT",
+    "theme" : {
+        "file" : "theme.less",
+        "dark" : true,
+        "addModeClass": true
+    },
+    "keywords" : ["theme", "dark", "dreamweaver", "recogneyes", "reconEyes"]
+}
